@@ -1,0 +1,20 @@
+# Validation notes
+
+This file records concrete checks rather than promising compatibility with every environment. The documented MySQL baseline is 8.4; runtime checks must name the actual server used.
+
+## Initial edition — 2026-10-21
+
+| Check | Result |
+| --- | --- |
+| Local Markdown navigation | 42 local links resolve; fenced code blocks are balanced |
+| Shell examples | 19 Bash code blocks pass `bash -n` syntax checks |
+| Disposable MySQL setup | MySQL Community Server **9.4.0**, separate temporary data directory and Unix socket, networking disabled |
+| Sample database | 3 agents, 8 tickets, and the documented open-ticket counts verified |
+| Repeated setup | A second seed import fails on the existing database and leaves the original rows unchanged |
+| Diagnostic SQL | The reusable health checklist and six SQL blocks from the quick-check/command guides execute successfully |
+| Transaction exercise | The update is visible within the transaction and rollback restores the original status |
+| Lock-wait exercise | Two sessions produce an observable row-lock wait; releasing the blocker allows progress; both updates are rolled back |
+| Query-plan exercise | The documented EXPLAIN and index inspection execute successfully |
+| Backup/restore exercise | The documented dump options produce a dump that restores to a separate schema; every sample row in both tables matches |
+
+The MySQL 8.4 documentation was used to review the examples, but **8.4 was not runtime-tested**. Linux commands were reviewed and their shell syntax checked; this macOS validation environment did not execute the Linux/systemd runbooks. Real systems may differ in packages, privileges, instrumentation, workload, and configuration.
