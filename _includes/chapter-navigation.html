@@ -1,0 +1,17 @@
+{% assign previous_entry = nil %}
+{% assign next_entry = nil %}
+{% assign last_entry = nil %}
+{% assign current_found = false %}
+{% for group in site.data[ui.nav] %}
+  {% for item in group.items %}
+    {% if current_found and next_entry == nil %}{% assign next_entry = item %}{% endif %}
+    {% if item.url == page.url %}{% assign previous_entry = last_entry %}{% assign current_found = true %}{% endif %}
+    {% assign last_entry = item %}
+  {% endfor %}
+{% endfor %}
+{% if current_found %}
+<nav class="chapter-nav" aria-label="{{ ui.chapter_navigation }}">
+  {% if previous_entry %}<a class="previous" href="{{ previous_entry.url | relative_url }}"><small>{{ ui.previous }}</small>← {{ previous_entry.title | escape }}</a>{% endif %}
+  {% if next_entry %}<a class="next" href="{{ next_entry.url | relative_url }}"><small>{{ ui.next }}</small>{{ next_entry.title | escape }} →</a>{% endif %}
+</nav>
+{% endif %}
