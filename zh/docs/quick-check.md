@@ -4,6 +4,8 @@ title: "五分钟快速检查"
 
 # 五分钟快速检查
 
+代码阅读：`#` 开头是 Shell 注释，`--` 开头是 SQL 注释，无需单独输入。Bash 代码在 Linux 终端执行，SQL 在已连接的 MySQL 客户端执行。按章节说明阅读，先替换示例目标；标有“实验”的写操作仅在练习环境运行。
+
 先记录目标主机或服务、影响范围、时间与时区、准确症状，以及最近一次已知变更。可使用[事件记录模板](../templates/incident.md)。
 
 ## Linux：先收集基本信息
@@ -11,12 +13,19 @@ title: "五分钟快速检查"
 **观察 — 按症状选择检查项，不要把所有命令盲目执行一遍。**
 
 ```bash
+# 显示带时区偏移的当前时间；-I 使用 ISO 格式，s 精确到秒，方便对齐日志时间。
 date -Is
+# 显示当前主机名；先确认自己连的是要排查的机器。
 hostname
+# 显示开机时长、登录用户数和最近 1/5/15 分钟平均负载；负载不是 CPU 百分比。
 uptime
+# 查看各文件系统空间；-h 用易读单位，-T 显示类型；重点看 Use% 和 Mounted on。
 df -hT
+# 查看 inode 使用量；IUse% 接近 100% 时，可能有空间却无法新建文件。
 df -i
+# 查看内存与交换空间；-h 使用易读单位，重点看 available，不要只看 free。
 free -h
+# 列出失败的 systemd 单元；--no-pager 直接输出，不进入翻页界面。
 systemctl --failed --no-pager
 ```
 
@@ -31,8 +40,11 @@ systemctl --failed --no-pager
 **观察 — 替换成实际的服务单元名称。**
 
 ```bash
+# 查看 nginx 服务状态；--full 不截断文字。把 nginx 换成实际服务名，关注 Active 和报错。
 systemctl status nginx --no-pager --full
+# 读取 nginx 最近 15 分钟的日志，最多 100 条；-u 指定服务，-n 限制条数。服务名须替换。
 journalctl -u nginx --since '-15 min' -n 100 --no-pager
+# 列出正在监听的 TCP 套接字；-l 只看监听，-n 不解析名称，-t 只看 TCP。
 ss -lnt
 ```
 
@@ -45,10 +57,16 @@ ss -lnt
 **观察**
 
 ```sql
+-- 查询服务器当前时间、主机名和 MySQL 版本；AS 给结果列起易读名称，不会修改数据。
 SELECT NOW() AS server_time, @@hostname AS server_host, VERSION() AS version;
+-- USER() 是客户端提供的用户与来源，CURRENT_USER() 是实际匹配的认证账户，两者可能不同。
 SELECT USER() AS connection_identity, CURRENT_USER() AS matched_account;
+-- 读取服务器级运行状态；WHERE ... IN 只保留下一行列出的指标。
 SHOW GLOBAL STATUS WHERE Variable_name IN
+  -- 列表中的指标分别表示运行秒数、当前连接数、非睡眠线程数、历史最高连接数、失败连接尝试数。
+  -- 分号结束本条 SQL；累计值需间隔采样才能判断当前变化。
   ('Uptime','Threads_connected','Threads_running','Max_used_connections','Aborted_connects');
+-- 查看连接上限与两种只读设置；用于了解配置背景，不是修改配置或完整权限检查。
 SHOW GLOBAL VARIABLES WHERE Variable_name IN ('max_connections','read_only','super_read_only');
 ```
 

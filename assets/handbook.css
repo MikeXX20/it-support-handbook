@@ -143,3 +143,5 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   .content table { display: table; font-size: 9pt; }
   .content a { text-decoration: underline; }
 }
+/* Allow explanatory comments to wrap while command syntax keeps its formatting. */
+.highlight .c, .highlight .c1, .highlight .cm { white-space: pre-wrap; overflow-wrap: anywhere; }

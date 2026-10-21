@@ -26,3 +26,7 @@ The MySQL 8.4 documentation was used to review the examples, but **8.4 was not r
 ## Simplified Chinese edition — 2026-10-21
 
 The Chinese edition translates all 14 guides plus the home page and provides a Chinese repository README. All **30 fenced code blocks** in translated guides match the English originals exactly, and both editions share the executable SQL files. Across the repository, **88 local Markdown links** resolve and code fences are balanced. Locale/configuration YAML parses successfully, and the updated browser script passes `node --check`. These are documentation and site checks; the database exercises were not rerun for translation.
+
+## Chinese beginner annotations — 2026-10-22
+
+Added Chinese explanations to all 30 Chinese guide code blocks and both shared SQL files. Removing full-line comments leaves every executable line unchanged. All 19 annotated Bash blocks pass `bash -n`; SQL comments use `-- `, and shell continuation groups remain intact. Database exercises were not rerun for this comment-only update.
