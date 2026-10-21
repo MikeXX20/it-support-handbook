@@ -8,10 +8,10 @@
   <meta name="theme-color" content="#102c3b">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/handbook.css' | relative_url }}">
-  <script src="{{ '/assets/handbook.js' | relative_url }}" defer></script>
+  <link rel="stylesheet" href="{{ '/assets/handbook.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <script src="{{ '/assets/handbook.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </head>
-<body data-search-url="{{ '/search.json' | relative_url }}">
+<body data-search-url="{{ '/search.json' | relative_url }}?v={{ site.time | date: '%s' }}">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="{{ '/' | relative_url }}" aria-label="IT Support Handbook home">

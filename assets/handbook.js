@@ -36,6 +36,7 @@
   if (!form || !input || !results || !status || !list) return;
   let indexPromise;
   let timer;
+  let searchGeneration = 0;
   const getIndex = () => {
     if (!indexPromise) {
       indexPromise = fetch(document.body.dataset.searchUrl)
@@ -48,6 +49,7 @@
     return indexPromise;
   };
   const search = async () => {
+    const generation = ++searchGeneration;
     const query = input.value.trim();
     if (query.length < 2) { results.hidden = true; return; }
     results.hidden = false;
@@ -55,7 +57,7 @@
     list.replaceChildren();
     try {
       const pages = await getIndex();
-      if (input.value.trim() !== query) return;
+      if (generation !== searchGeneration || input.value.trim() !== query) return;
       const terms = query.toLowerCase().split(/\s+/);
       const matches = pages.map(page => {
         const title = page.title.toLowerCase();
@@ -81,10 +83,10 @@
         list.append(li);
       }
     } catch {
-      if (input.value.trim() === query) status.textContent = 'Search is temporarily unavailable. Browse the topics instead.';
+      if (generation === searchGeneration && input.value.trim() === query) status.textContent = 'Search is temporarily unavailable. Browse the topics instead.';
     }
   };
-  form.addEventListener('submit', event => { event.preventDefault(); search(); });
+  form.addEventListener('submit', event => { event.preventDefault(); clearTimeout(timer); search(); });
   input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(search, 160); });
   input.addEventListener('focus', () => { if (input.value.trim().length >= 2) search(); });
   form.addEventListener('keydown', event => { if (event.key === 'Escape') results.hidden = true; });
