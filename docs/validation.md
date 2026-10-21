@@ -1,3 +1,7 @@
+---
+title: "Validation notes"
+---
+
 # Validation notes
 
 This file records concrete checks rather than promising compatibility with every environment. The documented MySQL baseline is 8.4; runtime checks must name the actual server used.

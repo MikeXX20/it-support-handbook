@@ -1,3 +1,7 @@
+---
+title: "MySQL troubleshooting"
+---
+
 # MySQL troubleshooting
 
 Start with the exact error, target host/port, connection method, server version, incident time, and application impact. Check [connection and SQL references](commands.md) before applying changes.

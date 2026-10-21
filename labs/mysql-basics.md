@@ -1,3 +1,7 @@
+---
+title: "MySQL lab: support tickets, transactions, and locks"
+---
+
 # MySQL lab: support tickets, transactions, and locks
 
 Use a disposable MySQL instance you control. The setup creates **`it_support_lab`** and writes sample data. It intentionally fails if that database already exists, rather than overwriting an earlier exercise.

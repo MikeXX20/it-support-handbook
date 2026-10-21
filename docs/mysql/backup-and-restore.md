@@ -1,3 +1,7 @@
+---
+title: "MySQL backup and restore: a learning drill"
+---
+
 # MySQL backup and restore: a learning drill
 
 Know the **RPO** (how much recent data can be lost) and **RTO** (how long recovery may take). A completed dump is not evidence that recovery will succeed. Keep real backups in your approved backup system; never commit them to this repository.

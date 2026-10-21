@@ -1,3 +1,7 @@
+---
+title: "Linux lab: files, permissions, processes, and evidence"
+---
+
 # Linux lab: files, permissions, processes, and evidence
 
 Use a disposable Linux VM or a Linux learning environment you control. The examples need a GNU/Linux shell; do not run service experiments on a work server. No root access is required for the file exercises.

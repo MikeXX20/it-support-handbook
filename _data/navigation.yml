@@ -1,0 +1,40 @@
+- title: Start here
+  items:
+    - title: Handbook home
+      url: /
+    - title: Five-minute quick check
+      url: /docs/quick-check.html
+    - title: Support workflow
+      url: /docs/it-support/workflow.html
+    - title: Incident template
+      url: /templates/incident.html
+- title: Linux
+  items:
+    - title: Command reference
+      url: /docs/linux/commands.html
+    - title: Troubleshooting
+      url: /docs/linux/troubleshooting.html
+    - title: Network checks
+      url: /docs/linux/networking.html
+- title: MySQL
+  items:
+    - title: Command reference
+      url: /docs/mysql/commands.html
+    - title: Troubleshooting
+      url: /docs/mysql/troubleshooting.html
+    - title: Backup and restore
+      url: /docs/mysql/backup-and-restore.html
+- title: Learn by doing
+  items:
+    - title: Four-week learning path
+      url: /learning/roadmap.html
+    - title: Linux lab
+      url: /labs/linux-basics.html
+    - title: MySQL lab
+      url: /labs/mysql-basics.html
+- title: About the handbook
+  items:
+    - title: Primary sources
+      url: /docs/sources.html
+    - title: Validation notes
+      url: /docs/validation.html

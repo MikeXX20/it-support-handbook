@@ -1,3 +1,7 @@
+---
+title: "Five-minute quick check"
+---
+
 # Five-minute quick check
 
 Start a ticket with the target host/service, impact, time and timezone, exact symptom, and most recent known change. Use [the incident template](../templates/incident.md).

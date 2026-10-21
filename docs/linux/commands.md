@@ -1,3 +1,7 @@
+---
+title: "Linux command reference"
+---
+
 # Linux command reference
 
 These are individual **Observe** examples for a Linux shell. Some tools are optional packages; additional access may be needed for other users' processes and system logs.

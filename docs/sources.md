@@ -1,3 +1,7 @@
+---
+title: "Primary sources and compatibility"
+---
+
 # Primary sources and compatibility
 
 Use these sources to check details for the exact software version in front of you. Commands in this handbook are original short examples, not a replacement for vendor documentation.

@@ -1,0 +1,25 @@
+title: IT Support Handbook
+description: Practical Linux and MySQL checks, troubleshooting workflows, and learning labs.
+url: https://mikexx20.github.io
+baseurl: /it-support-handbook
+repository: MikeXX20/it-support-handbook
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+exclude:
+  - README.md
+  - AGENTS.md
+  - CONTRIBUTING.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules

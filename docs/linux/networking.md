@@ -1,3 +1,7 @@
+---
+title: "Network troubleshooting: name \u2192 route \u2192 port \u2192 protocol"
+---
+
 # Network troubleshooting: name → route → port → protocol
 
 Run connectivity checks only against approved targets. Set the actual host and port; `example.com` / `db.example.com` are documentation placeholders.

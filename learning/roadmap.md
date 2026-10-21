@@ -1,3 +1,7 @@
+---
+title: "Four-week learning path"
+---
+
 # Four-week learning path
 
 Use 30–45 minutes per session, four sessions a week. Progress by demonstrating a task and explaining the evidence, not by memorizing command flags.

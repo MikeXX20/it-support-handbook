@@ -1,3 +1,7 @@
+---
+title: "Incident / support ticket"
+---
+
 # Incident / support ticket
 
 Copy this template into your approved ticket system. Do not commit completed real incidents to this public repository.

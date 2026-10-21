@@ -1,3 +1,7 @@
+---
+title: "Linux troubleshooting runbooks"
+---
+
 # Linux troubleshooting runbooks
 
 Each runbook starts with observations. Any restart, deletion, permission change, or resource reconfiguration is a separate **Change** decision.

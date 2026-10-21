@@ -1,3 +1,7 @@
+---
+title: "MySQL command reference"
+---
+
 # MySQL command reference
 
 Baseline: MySQL 8.4. Confirm `VERSION()` and privileges first; managed services, older MySQL releases, and MariaDB can differ. The checks below are **Observe** operations, but metadata queries still have a cost and may disclose query text.
