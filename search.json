@@ -2,14 +2,4 @@
 layout: null
 permalink: /search.json
 ---
-[
-{% assign first_entry = true %}
-{% assign sorted_pages = site.pages | sort: 'url' %}
-{% for entry in sorted_pages %}
-{% if entry.title and entry.searchable != false and entry.path contains '.md' %}
-{% unless first_entry %},{% endunless %}
-{"title": {{ entry.title | jsonify }}, "url": {{ entry.url | relative_url | jsonify }}, "body": {{ entry.content | markdownify | strip_html | normalize_whitespace | jsonify }}}
-{% assign first_entry = false %}
-{% endif %}
-{% endfor %}
-]
+{% include search-index.json %}

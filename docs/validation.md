@@ -22,3 +22,7 @@ This file records concrete checks rather than promising compatibility with every
 | Backup/restore exercise | The documented dump options produce a dump that restores to a separate schema; every sample row in both tables matches |
 
 The MySQL 8.4 documentation was used to review the examples, but **8.4 was not runtime-tested**. Linux commands were reviewed and their shell syntax checked; this macOS validation environment did not execute the Linux/systemd runbooks. Real systems may differ in packages, privileges, instrumentation, workload, and configuration.
+
+## Simplified Chinese edition — 2026-10-21
+
+The Chinese edition translates all 14 guides plus the home page and provides a Chinese repository README. All **30 fenced code blocks** in translated guides match the English originals exactly, and both editions share the executable SQL files. Across the repository, **88 local Markdown links** resolve and code fences are balanced. Locale/configuration YAML parses successfully, and the updated browser script passes `node --check`. These are documentation and site checks; the database exercises were not rerun for translation.

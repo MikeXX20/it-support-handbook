@@ -15,8 +15,15 @@ defaults:
       path: ""
     values:
       layout: default
+      lang: en
+  - scope:
+      path: "zh"
+    values:
+      lang: zh-CN
+      description: 面向日常工作与学习的 IT 支持、Linux 和 MySQL 实用手册。
 exclude:
   - README.md
+  - README.zh-CN.md
   - AGENTS.md
   - CONTRIBUTING.md
   - Gemfile

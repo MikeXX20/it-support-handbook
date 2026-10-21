@@ -1,5 +1,7 @@
 # IT Support Handbook
 
+**English** | [简体中文](README.zh-CN.md)
+
 Practical Linux and MySQL references for the working day, with small labs for learning the reasoning behind the commands.
 
 **Read the website:** [IT Support Handbook](https://mikexx20.github.io/it-support-handbook/)

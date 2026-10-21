@@ -1,5 +1,17 @@
 (() => {
   'use strict';
+  const chinese = document.documentElement.lang === 'zh-CN';
+  const text = chinese ? {
+    copy: '复制', copied: '已复制', select: '请选择代码复制', copyLabel: '复制代码块',
+    searching: '正在搜索…', count: n => `找到 ${n} 篇指南`,
+    empty: '未找到相关指南。试试“磁盘”、“锁”或“备份”。',
+    unavailable: '搜索暂不可用，请通过目录浏览。'
+  } : {
+    copy: 'Copy', copied: 'Copied', select: 'Select code to copy', copyLabel: 'Copy code block',
+    searching: 'Searching…', count: n => `${n} matching guides`,
+    empty: 'No matching guides. Try “disk”, “locks”, or “backup”.',
+    unavailable: 'Search is temporarily unavailable. Browse the topics instead.'
+  };
   const menu = document.querySelector('.menu-toggle');
   const sidebar = document.querySelector('.sidebar');
   menu?.addEventListener('click', () => {
@@ -14,16 +26,16 @@
     const button = document.createElement('button');
     button.className = 'copy-button';
     button.type = 'button';
-    button.textContent = 'Copy';
-    button.setAttribute('aria-label', 'Copy code block');
+    button.textContent = text.copy;
+    button.setAttribute('aria-label', text.copyLabel);
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(code.textContent);
-        button.textContent = 'Copied';
+        button.textContent = text.copied;
       } catch {
-        button.textContent = 'Select code to copy';
+        button.textContent = text.select;
       }
-      window.setTimeout(() => { button.textContent = 'Copy'; }, 2200);
+      window.setTimeout(() => { button.textContent = text.copy; }, 2200);
     });
     pre.append(button);
   });
@@ -53,7 +65,7 @@
     const query = input.value.trim();
     if (query.length < 2) { results.hidden = true; return; }
     results.hidden = false;
-    status.textContent = 'Searching…';
+    status.textContent = text.searching;
     list.replaceChildren();
     try {
       const pages = await getIndex();
@@ -62,12 +74,12 @@
       const matches = pages.map(page => {
         const title = page.title.toLowerCase();
         const body = page.body.toLowerCase();
-        const text = `${title} ${body}`;
-        const score = terms.every(term => text.includes(term))
+        const searchable = `${title} ${body}`;
+        const score = terms.every(term => searchable.includes(term))
           ? terms.reduce((n, term) => n + (title.includes(term) ? 5 : 1), 0) : 0;
         return { ...page, score };
       }).filter(page => page.score > 0).sort((a, b) => b.score - a.score).slice(0, 8);
-      status.textContent = matches.length ? `${matches.length} matching guides` : 'No matching guides. Try “disk”, “locks”, or “backup”.';
+      status.textContent = matches.length ? text.count(matches.length) : text.empty;
       for (const page of matches) {
         const li = document.createElement('li');
         const link = document.createElement('a');
@@ -83,7 +95,7 @@
         list.append(li);
       }
     } catch {
-      if (generation === searchGeneration && input.value.trim() === query) status.textContent = 'Search is temporarily unavailable. Browse the topics instead.';
+      if (generation === searchGeneration && input.value.trim() === query) status.textContent = text.unavailable;
     }
   };
   form.addEventListener('submit', event => { event.preventDefault(); clearTimeout(timer); search(); });

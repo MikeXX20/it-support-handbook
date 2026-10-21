@@ -1,0 +1,15 @@
+[
+{% assign search_language = page.lang | default: "en" %}
+{% assign first_entry = true %}
+{% assign sorted_pages = site.pages | sort: 'url' %}
+{% for entry in sorted_pages %}
+{% assign entry_language = entry.lang | default: "en" %}
+{% if entry_language == search_language %}
+{% if entry.title and entry.searchable != false and entry.path contains '.md' %}
+{% unless first_entry %},{% endunless %}
+{"title": {{ entry.title | jsonify }}, "url": {{ entry.url | relative_url | jsonify }}, "body": {{ entry.content | markdownify | strip_html | normalize_whitespace | jsonify }}}
+{% assign first_entry = false %}
+{% endif %}
+{% endif %}
+{% endfor %}
+]

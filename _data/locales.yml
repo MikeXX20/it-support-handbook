@@ -1,0 +1,40 @@
+en:
+  title: IT Support Handbook
+  home: /
+  search_url: /search.json
+  nav: navigation
+  skip: Skip to content
+  brand: IT Support <strong>Handbook</strong>
+  home_label: IT Support Handbook home
+  search_label: Search the handbook
+  placeholder: Search commands, symptoms, labs…
+  results: Search results
+  browse: Browse
+  topics: Handbook topics
+  intro: REFERENCE + PRACTICE
+  note: Observe first.<br>Understand the result.<br>Choose the next useful check.
+  eyebrow: THE HANDBOOK
+  footer: Practical notes. Clear next steps.
+  source: View source
+  language: 简体中文
+  language_label: 切换到此页面的简体中文版
+zh-CN:
+  title: IT 支持实用手册
+  home: /zh/
+  search_url: /zh/search.json
+  nav: navigation_zh
+  skip: 跳转到正文
+  brand: IT 支持 <strong>实用手册</strong>
+  home_label: IT 支持实用手册首页
+  search_label: 搜索手册
+  placeholder: 搜索命令、症状、实验…
+  results: 搜索结果
+  browse: 目录
+  topics: 手册主题
+  intro: 工作速查 · 动手实践
+  note: 先观察现象。<br>理解检查结果。<br>再选择下一步。
+  eyebrow: 实用手册
+  footer: 实用记录，明确下一步。
+  source: 查看源码
+  language: English
+  language_label: Switch to the English version of this page

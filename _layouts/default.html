@@ -1,42 +1,47 @@
+{% assign language = page.lang | default: "en" %}
+{% assign ui = site.data.locales[language] %}
+{% if language == "zh-CN" %}{% assign alternate_url = page.url | remove_first: "/zh" %}{% assign alternate_lang = "en" %}{% else %}{% assign alternate_url = page.url | prepend: "/zh" %}{% assign alternate_lang = "zh-CN" %}{% endif %}
 <!doctype html>
-<html lang="en">
+<html lang="{{ language }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title | escape }} · {{ site.title | escape }}</title>
+  <title>{{ page.title | escape }} · {{ ui.title | escape }}</title>
   <meta name="description" content="{{ page.description | default: site.description | escape }}">
   <meta name="theme-color" content="#102c3b">
+  <link rel="alternate" hreflang="{{ alternate_lang }}" href="{{ alternate_url | absolute_url }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/handbook.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <script src="{{ '/assets/handbook.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </head>
-<body data-search-url="{{ '/search.json' | relative_url }}?v={{ site.time | date: '%s' }}">
-  <a class="skip-link" href="#main">Skip to content</a>
+<body data-search-url="{{ ui.search_url | relative_url }}?v={{ site.time | date: '%s' }}">
+  <a class="skip-link" href="#main">{{ ui.skip }}</a>
   <header class="site-header">
-    <a class="brand" href="{{ '/' | relative_url }}" aria-label="IT Support Handbook home">
+    <a class="brand" href="{{ ui.home | relative_url }}" aria-label="{{ ui.home_label }}">
       <span class="brand-mark" aria-hidden="true">&gt;_</span>
-      <span>IT Support <strong>Handbook</strong></span>
+      <span>{{ ui.brand }}</span>
     </a>
     <div class="header-tools">
       <form class="search" role="search">
-        <label class="sr-only" for="handbook-search">Search the handbook</label>
+        <label class="sr-only" for="handbook-search">{{ ui.search_label }}</label>
         <span class="search-icon" aria-hidden="true">⌕</span>
-        <input id="handbook-search" type="search" placeholder="Search commands, symptoms, labs…" autocomplete="off" aria-controls="search-results">
-        <div id="search-results" class="search-results" hidden aria-label="Search results">
+        <input id="handbook-search" type="search" placeholder="{{ ui.placeholder }}" autocomplete="off" aria-controls="search-results">
+        <div id="search-results" class="search-results" hidden aria-label="{{ ui.results }}">
           <p class="search-status" role="status"></p>
           <ul></ul>
         </div>
       </form>
+      <a class="language-link" href="{{ alternate_url | relative_url }}" lang="{{ alternate_lang }}" hreflang="{{ alternate_lang }}" aria-label="{{ ui.language_label }}">{{ ui.language }}</a>
       <a class="github-link" href="https://github.com/MikeXX20/it-support-handbook">GitHub <span aria-hidden="true">↗</span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">Browse</button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">{{ ui.browse }}</button>
     </div>
   </header>
   <div class="site-shell">
     <aside class="sidebar" id="site-sidebar">
-      <div class="sidebar-intro"><span class="live-dot" aria-hidden="true"></span> REFERENCE + PRACTICE</div>
-      <nav aria-label="Handbook topics">
-        {% for group in site.data.navigation %}
+      <div class="sidebar-intro"><span class="live-dot" aria-hidden="true"></span> {{ ui.intro }}</div>
+      <nav aria-label="{{ ui.topics }}">
+        {% for group in site.data[ui.nav] %}
         <div class="nav-group">
           <h2>{{ group.title | escape }}</h2>
           {% for item in group.items %}
@@ -45,14 +50,14 @@
         </div>
         {% endfor %}
       </nav>
-      <p class="sidebar-note">Observe first.<br>Understand the result.<br>Choose the next useful check.</p>
+      <p class="sidebar-note">{{ ui.note }}</p>
     </aside>
     <main id="main" class="content{% if page.home %} home-content{% endif %}" tabindex="-1">
-      {% unless page.home %}<div class="page-eyebrow">THE HANDBOOK <span>/</span> {{ page.title | escape }}</div>{% endunless %}
+      {% unless page.home %}<div class="page-eyebrow">{{ ui.eyebrow }} <span>/</span> {{ page.title | escape }}</div>{% endunless %}
       <article>{{ content }}</article>
       <footer class="page-footer">
-        <span>Practical notes. Clear next steps.</span>
-        <a href="https://github.com/MikeXX20/it-support-handbook/blob/main/{{ page.path | escape }}">View source <span aria-hidden="true">↗</span></a>
+        <span>{{ ui.footer }}</span>
+        <a href="https://github.com/MikeXX20/it-support-handbook/blob/main/{{ page.path | escape }}">{{ ui.source }} <span aria-hidden="true">↗</span></a>
       </footer>
     </main>
   </div>

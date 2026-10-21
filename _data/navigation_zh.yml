@@ -1,0 +1,40 @@
+- title: 从这里开始
+  items:
+    - title: 手册首页
+      url: /zh/
+    - title: 五分钟快速检查
+      url: /zh/docs/quick-check.html
+    - title: IT 支持工作流程
+      url: /zh/docs/it-support/workflow.html
+    - title: 事件与工单模板
+      url: /zh/templates/incident.html
+- title: Linux
+  items:
+    - title: 命令速查
+      url: /zh/docs/linux/commands.html
+    - title: 故障排查
+      url: /zh/docs/linux/troubleshooting.html
+    - title: 网络排查
+      url: /zh/docs/linux/networking.html
+- title: MySQL
+  items:
+    - title: 命令速查
+      url: /zh/docs/mysql/commands.html
+    - title: 故障排查
+      url: /zh/docs/mysql/troubleshooting.html
+    - title: 备份与恢复
+      url: /zh/docs/mysql/backup-and-restore.html
+- title: 动手学习
+  items:
+    - title: 四周学习路线
+      url: /zh/learning/roadmap.html
+    - title: Linux 实验
+      url: /zh/labs/linux-basics.html
+    - title: MySQL 实验
+      url: /zh/labs/mysql-basics.html
+- title: 关于手册
+  items:
+    - title: 官方资料与兼容性
+      url: /zh/docs/sources.html
+    - title: 验证记录
+      url: /zh/docs/validation.html
